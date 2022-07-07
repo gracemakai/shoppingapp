@@ -17,6 +17,7 @@ class HomeScreen extends StatelessWidget {
           "Shop",
           style: const TextStyle(color: Colors.white),
         ),
+        elevation: 0,
         actions: [
           Obx((){
               return InkWell(
@@ -50,16 +51,20 @@ class HomeScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                      )
+                      ),
+
                     ],
+
                   ));
             }
-          )
+          ),
+          SizedBox(width: 0.02.sw,)
         ],
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
+            SizedBox(height: 0.02.sh,),
             GridView.builder(
               itemCount: _shopController.products.length,
               shrinkWrap: true,
@@ -70,8 +75,7 @@ class HomeScreen extends StatelessWidget {
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
-                      padding: const EdgeInsets.all(5.0),
-                      width: 0.4.sw,
+                      // padding: const EdgeInsets.all(5.0),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color: Colors.white,
@@ -86,76 +90,84 @@ class HomeScreen extends StatelessWidget {
                           ]),
                       child: Column(
                         children: [
-                          Image.asset(
-                            product.imageUrl.toString(),
-                            width: 0.4.sw,
-                            height: 0.15.sh,
-                            fit: BoxFit.fill,
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: Image.asset(
+                              product.imageUrl.toString(),
+                              width: 0.45.sw,
+                              height: 0.15.sh,
+                              fit: BoxFit.cover,
+                            ),
                           ),
+                          SizedBox(height: 0.005.sh,),
                           Text(
                             product.name.toString(),
                             style:
                                 TextStyle(color: Colors.black, fontSize: 14.sp),
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "\$ ${product.price.toString()}",
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 14.sp),
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  if(_shopController.checkoutProducts
-                                      .indexWhere((element) => element.id == product.id) == -1) {
-                                    _shopController.checkoutProducts.add(product);
-                                  }
+                          SizedBox(height: 0.005.sh,),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 3.0, right: 3.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "\$ ${product.price.toString()}",
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 14.sp, fontWeight: FontWeight.bold),
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    if(_shopController.checkoutProducts
+                                        .indexWhere((element) => element.id == product.id) == -1) {
+                                      _shopController.checkoutProducts.add(product);
+                                    }
 
-                                  GetSnackBar(duration: Duration(seconds: 5),
-                                    messageText: Text("${product.name} has been added to your cart",
-                                        style:
-                                        TextStyle(color: Colors.white,)),
-                                    backgroundColor: Colors.black,
-                                  ).show();
-                                },
-                                child: Container(
-                                  width: 0.25.sw,
-                                  height: 0.03.sh,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: Colors.green,
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.grey.withOpacity(0.5),
-                                          spreadRadius: 5,
-                                          blurRadius: 7,
-                                          offset: const Offset(0,
-                                              3), // changes position of shadow
+                                    GetSnackBar(duration: Duration(seconds: 5),
+                                      messageText: Text("${product.name} has been added to your cart",
+                                          style:
+                                          TextStyle(color: Colors.white,)),
+                                      backgroundColor: Colors.black,
+                                    ).show();
+                                  },
+                                  child: Container(
+                                    width: 0.25.sw,
+                                    height: 0.03.sh,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: Colors.green,
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.grey.withOpacity(0.5),
+                                            spreadRadius: 5,
+                                            blurRadius: 7,
+                                            offset: const Offset(0,
+                                                3), // changes position of shadow
+                                          ),
+                                        ]),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        const Icon(
+                                          Icons.shopping_cart,
+                                          color: Colors.black,
+                                          size: 13,
                                         ),
-                                      ]),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      const Icon(
-                                        Icons.shopping_cart,
-                                        color: Colors.black,
-                                        size: 15,
-                                      ),
-                                      SizedBox(
-                                        width: 0.01.sw,
-                                      ),
-                                      Text(
-                                        "Add to cart",
-                                        style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 12.sp),
-                                      ),
-                                    ],
+                                        SizedBox(
+                                          width: 0.01.sw,
+                                        ),
+                                        Text(
+                                          "Add to cart",
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 10.sp),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ],
                       )),
