@@ -16,6 +16,10 @@ class ShopController extends GetxController{
     products.add(ProductModel(id: "4", name: "Pizza", imageUrl: "assets/image/pizza.jpg", price: 12));
     products.add(ProductModel(id: "5", name: "Burger", imageUrl: "assets/image/burger.jpg", price: 10));
     products.add(ProductModel(id: "6", name: "French fries", imageUrl: "assets/image/fries.jpg", price: 3));
+    products.add(ProductModel(id: "7", name: "French toast", imageUrl: "assets/image/ice_cream.jpg", price: 4));
+    products.add(ProductModel(id: "8", name: "Ice cream", imageUrl: "assets/image/french_toast.jpg", price: 4));
+    products.add(ProductModel(id: "9", name: "Pasta", imageUrl: "assets/image/pasta.jpg", price: 5));
+    products.add(ProductModel(id: "10", name: "Tacos", imageUrl: "assets/image/tacos.jpg", price: 10));
 
   }
 }
