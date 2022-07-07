@@ -15,7 +15,7 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text(
           "Shop",
-          style: const TextStyle(color: Colors.white),
+          style: TextStyle(color: Colors.white),
         ),
         elevation: 0,
         actions: [
@@ -68,6 +68,7 @@ class HomeScreen extends StatelessWidget {
             GridView.builder(
               itemCount: _shopController.products.length,
               shrinkWrap: true,
+              physics: const BouncingScrollPhysics(),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2),
               itemBuilder: (context, index) {
@@ -107,7 +108,7 @@ class HomeScreen extends StatelessWidget {
                           ),
                           SizedBox(height: 0.005.sh,),
                           Padding(
-                            padding: const EdgeInsets.only(left: 3.0, right: 3.0),
+                            padding: const EdgeInsets.only(left: 4.0, right: 4.0),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -123,10 +124,10 @@ class HomeScreen extends StatelessWidget {
                                       _shopController.checkoutProducts.add(product);
                                     }
 
-                                    GetSnackBar(duration: Duration(seconds: 5),
+                                    GetSnackBar(duration: const Duration(seconds: 5),
                                       messageText: Text("${product.name} has been added to your cart",
                                           style:
-                                          TextStyle(color: Colors.white,)),
+                                          const TextStyle(color: Colors.white,)),
                                       backgroundColor: Colors.black,
                                     ).show();
                                   },
@@ -173,7 +174,8 @@ class HomeScreen extends StatelessWidget {
                       )),
                 );
               },
-            )
+            ),
+            SizedBox(height: 0.02.sh,),
           ],
         ),
       ),
